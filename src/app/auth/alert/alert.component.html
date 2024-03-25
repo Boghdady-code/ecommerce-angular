@@ -1,0 +1,11 @@
+<div
+  class="alert"
+  [ngClass]="{
+    'alert-success': type === 'success',
+    'alert-danger': type === 'error'
+  }"
+>
+  <i class="fa-solid fa-circle-exclamation" *ngIf="type === 'error'"></i>
+  <i class="fa-regular fa-circle-check" *ngIf="type === 'success'"></i>
+  {{ message }}
+</div>

@@ -1,0 +1,145 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="left col-md-3">
+      <div class="categories">
+        <select
+          name="categories"
+          id=""
+          class="form-select"
+          (change)="onCategoryChange($event)"
+        >
+          <option value="" class="text-center form-control">
+            Select a Category
+          </option>
+          <option
+            *ngFor="let category of categories"
+            value="{{ category._id }}"
+            class="form-control"
+          >
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+      <div class="filter mt-3">
+        <div class="brands">
+          <h3 class="text-center">Brands</h3>
+          <form>
+            <div
+              class="form-group mb-1 d-flex align-items-center gap-2"
+              *ngFor="let brand of brands"
+            >
+              <input
+                type="checkbox"
+                name="{{ brand.name }}"
+                id="{{ brand._id }}"
+                style="margin: 0"
+                class="form-check-input"
+                (click)="onBrandsSubmit($event)"
+              />
+              <label
+                for="{{ brand._id }}"
+                class="form-check-label text-uppercase fw-bold"
+                >{{ brand.name }}</label
+              >
+            </div>
+          </form>
+        </div>
+        <div class="prices mt-3">
+          <h3 class="text-center">Price</h3>
+          <form
+            class="d-flex align-items-center gap-2 mt-3"
+            (change)="onPriceSubmit(from.value, to.value)"
+          >
+            <div class="from text-center">
+              <label for="from" class="form-label">From</label>
+              <input
+                type="number"
+                name="from"
+                id="from"
+                class="form-control"
+                #from
+              />
+            </div>
+
+            <div class="to text-center">
+              <label for="to" class="form-label">To</label>
+              <input type="number" name="to" id="to" class="form-control" #to />
+            </div>
+          </form>
+        </div>
+        <div class="sort mt-3">
+          <h3 class="text-center">Sort</h3>
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              style="cursor: pointer"
+              (click)="onSortSubmit('price')"
+            >
+              Lowest Price
+            </li>
+            <li
+              class="list-group-item"
+              style="cursor: pointer"
+              (click)="onSortSubmit('-sold')"
+            >
+              Top Seller Products
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="right col-md-9">
+      <div class="row gap-1 justify-content-center align-items-center">
+        <div *ngIf="isLoading" class="loader-container">
+          <div class="lds-circle"><div></div></div>
+        </div>
+        <ng-container *ngIf="!isLoading">
+          <div
+            *ngFor="let product of products; let index = index"
+            class="product col-md-3"
+          >
+            <div (click)="onProductClick(product._id)" style="cursor: pointer">
+              <div class="product-img">
+                <img
+                  src="{{ product.imageCover }}"
+                  alt=""
+                  class="img-fluid card-img-top"
+                />
+              </div>
+              <div
+                class="product-body d-flex justify-content-center align-items-center gap-2"
+              >
+                <h3 class="product-name h4" style="margin: 0">
+                  {{ product.title }}
+                </h3>
+                <div class="product-price">{{ product.price | currency }}</div>
+              </div>
+            </div>
+            <div class="product-footer">
+              <button class="btn-add" (click)="onAddToCart(product._id)">
+                Add To Cart
+              </button>
+              <i
+                class="fa-regular fa-heart"
+                (click)="onWishList(product._id)"
+                #WishListIcon
+              ></i>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="!isParamsExist() && !isQueryParamsExist()"
+  class="flex justify-content-center mb-3"
+  style="background-color: #f6f6f6"
+>
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [rows]="limit"
+    [totalRecords]="totalDocuments"
+  ></p-paginator>
+</div>

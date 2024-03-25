@@ -1,0 +1,183 @@
+<div class="backdrop" (click)="closeModal()"></div>
+<div class="container-fluid">
+  <div class="modal-box">
+    <div class="modal-top">
+      <i
+        class="fa-solid fa-arrow-left-long"
+        *ngIf="mode === 'register' || mode === 'reset'"
+        (click)="mode = 'login'"
+      ></i>
+      <h1>
+        {{
+          mode === "login"
+            ? "Login"
+            : mode === "register"
+            ? "Register"
+            : "Password Reset"
+        }}
+      </h1>
+      <i class="fa-solid fa-xmark" (click)="closeModal()"></i>
+    </div>
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit(loginForm)"
+      *ngIf="mode === 'login'"
+    >
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          ngModel
+          required
+          email
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          ngModel
+          required
+          minlength="6"
+        />
+      </div>
+      <p class="forgot-txt">
+        Forgot Password? <a (click)="mode = 'reset'">Click Here</a>
+      </p>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+      <p class="register-txt">
+        Don't Have an Account? <a (click)="mode = 'register'">Register</a>
+      </p>
+    </form>
+    <form
+      #registerForm="ngForm"
+      (ngSubmit)="onSubmit(registerForm)"
+      *ngIf="mode === 'register'"
+    >
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          name="name"
+          ngModel
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          ngModel
+          required
+          email
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          name="password"
+          ngModel
+          required
+          minlength="6"
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          name="confirmPassword"
+          ngModel
+          required
+          minlength="6"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!registerForm.valid"
+      >
+        Register
+      </button>
+    </form>
+    <form
+      *ngIf="mode === 'reset'"
+      (ngSubmit)="onSubmit(resetForm)"
+      #resetForm="ngForm"
+    >
+      <div class="form-group">
+        <label for="email"> Enter Your Email Address</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          name="email"
+          required
+          email
+          ngModel
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!resetForm.valid"
+      >
+        Reset Password
+      </button>
+    </form>
+    <form
+      *ngIf="mode === 'code'"
+      (ngSubmit)="onSubmit(resetCodeForm)"
+      #resetCodeForm="ngForm"
+    >
+      <div class="form-group">
+        <label for="code">Verify Reset Code</label>
+        <input
+          type="text"
+          id="code"
+          class="form-control"
+          required
+          ngModel
+          name="code"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <form
+      *ngIf="mode === 'newPassword'"
+      #newPasswordForm="ngForm"
+      (ngSubmit)="onSubmit(newPasswordForm)"
+    >
+      <div class="form-group">
+        <label for="email">Enter your Email</label>
+        <input type="email" required ngModel name="email" />
+      </div>
+      <div class="form-group">
+        <label for="newPassword">New Password</label>
+        <input type="password" required ngModel name="newPassword" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

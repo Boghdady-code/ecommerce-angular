@@ -1,0 +1,104 @@
+$primary-color: #feeae6;
+$secondary-color: #442c2e;
+
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  height: 100vh;
+}
+.product {
+  .product-images {
+    display: flex;
+
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+    .main-image {
+      flex: 1;
+      img {
+        transition: all 0.5s;
+      }
+    }
+    .other-images {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 10px;
+      img {
+        width: 100%;
+        height: 100px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid $primary-color;
+        padding: 2px;
+        transition: all 0.5s;
+      }
+    }
+  }
+  .product-details {
+    background-color: #fff;
+    position: relative;
+    padding: 30px;
+    border-radius: 10px;
+    height: 600px;
+    box-shadow: 0 2px 8px rgba(119, 95, 95, 0.26);
+    border: 1px solid $primary-color;
+    .add-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn-cart {
+      color: #fff;
+      border: 1px solid $secondary-color;
+      border-radius: 10px;
+      padding: 10px;
+      transition: all 0.5s;
+      color: $secondary-color;
+      font-weight: bold;
+
+      &:hover {
+        background-color: $primary-color;
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+.container-fluid {
+  border-top: 1px solid #feeae6;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.post-comment {
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.reviews {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .review {
+    border: 1px solid $primary-color;
+    border-radius: 10px;
+    padding: 10px;
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+@media (max-width: 768px) {
+  .reviews-box {
+    padding-top: 450px;
+  }
+}

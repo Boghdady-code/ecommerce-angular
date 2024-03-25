@@ -1,0 +1,62 @@
+<div class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-links">
+      <ul>
+        <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active">
+          <a routerLink="/products">Products</a>
+        </li>
+        <li><a>Contact</a></li>
+      </ul>
+    </div>
+    <div class="navbar-logo">
+      <a routerLink="/home" class="navbar-brand"
+        ><img src="./assets/img/logo.png" alt="" class="logo img-fluid"
+      /></a>
+    </div>
+    <div class="navbar-right">
+      <div class="burger" (click)="toggleMenu()">
+        <span class="line-1" #line1></span>
+        <span class="line-2" #line2></span>
+        <span class="line-3" #line3></span>
+      </div>
+      <div #responsive class="responsive">
+        <div class="navbar-search">
+          <input
+            type="text"
+            placeholder="Search"
+            #search
+            class="form-control search"
+            (input)="toProducts(search.value)"
+          />
+          <i class="fa-solid fa-magnifying-glass" (click)="openSearch()"></i>
+        </div>
+        <div class="navbar-cart" *ngIf="isAuthenticated">
+          <a routerLink="/cart" style="cursor: pointer"
+            ><i class="fa fa-shopping-cart"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-auth" *ngIf="!isAuthenticated">
+      <a class="btn-login" (click)="openModal()" *ngIf="!isAuthenticated"
+        >Sign In</a
+      >
+    </div>
+    <div class="navbar-profile" *ngIf="isAuthenticated">
+      <a
+        style="color: #44422e"
+        (click)="openDropdown()"
+        class="dropdown-toggle"
+        role="button"
+        >Hello, {{ loggedUser }}
+      </a>
+      <ul class="drop-list" #dropdown>
+        <li><a (click)="toProfile()">Profile</a></li>
+
+        <li (click)="onLogout()"><a>Sign Out</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<app-auth-modal *ngIf="modalStat"></app-auth-modal>

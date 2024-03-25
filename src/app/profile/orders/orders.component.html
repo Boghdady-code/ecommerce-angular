@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="orders">
+    <h1 class="text-center mb-5">Your Orders</h1>
+    <div class="no-orders-container" *ngIf="orders.length === 0">
+      <div class="content" *ngIf="!isLoading">
+        <P class="text-center no-order-p">You have no orders!</P>
+        <a class="text-center no-order-link" routerLink="/">Keep shopping</a>
+      </div>
+    </div>
+    <div class="orders-container" *ngIf="orders.length > 0">
+      <div class="loader-container" *ngIf="isLoading">
+        <div class="lds-circle"><div></div></div>
+      </div>
+      <div class="tbl-fixed">
+        <table class="table table-hover" *ngIf="!isLoading">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">No.</th>
+              <th scope="col">Name</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Order Id</th>
+              <th scope="col">Total Order Price</th>
+              <th scope="col">Is Delivered</th>
+              <th scope="col">Delivered At</th>
+              <th scope="col">Is Paid</th>
+              <th scope="col">Paid At</th>
+              <th scope="col">Payment Method</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders; let i = index" class="text-center">
+              <td>{{ i + 1 }}</td>
+              <td>{{ order.user.name }}</td>
+              <td>{{ order.user.email }}</td>
+              <td>{{ order._id }}</td>
+              <td>{{ order.totalOrderPrice | currency }}</td>
+              <td>{{ order.isDelivered }}</td>
+              <td>{{ order.deliveredAt }}</td>
+              <td>{{ order.isPaid }}</td>
+              <td>{{ order.paidAt }}</td>
+              <td>{{ order.paymentMethod }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

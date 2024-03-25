@@ -1,0 +1,58 @@
+$primary-color: #feeae6;
+$secondary-color: #442c2e;
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+app-footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px dotted $secondary-color;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.alert-container {
+  position: fixed;
+  top: 105px;
+  right: 25px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.success-container {
+  position: fixed;
+  top: 105px;
+  right: 25px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

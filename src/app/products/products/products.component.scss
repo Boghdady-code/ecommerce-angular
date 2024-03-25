@@ -1,0 +1,88 @@
+$primary-color: #feeae6;
+$secondary-color: #442c2e;
+
+.container-fluid {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+}
+
+.product {
+  border: 1px solid $primary-color;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+
+  .product-img {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+  }
+  .product-body {
+    text-align: center;
+    height: 150px;
+  }
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    .fa-heart {
+      cursor: pointer;
+      transition: all 0.5s;
+      font-size: 25px;
+      color: $secondary-color;
+      &:hover {
+        color: red;
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-circle {
+  display: inline-block;
+  transform: translateZ(1px);
+}
+.lds-circle > div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: #ffded7;
+  animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+@keyframes lds-circle {
+  0%,
+  100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+.btn-add {
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+}

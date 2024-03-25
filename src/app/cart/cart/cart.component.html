@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="cart" *ngIf="cartItemsValues.length > 0">
+    <div class="clear-btn d-flex justify-content-end align-items-center mb-3">
+      <button class="btn-clear" (click)="clearCart()">Clear Cart</button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cartItem of cartItemsValues">
+          <th scope="row">
+            <img [src]="cartItem.productImage" alt="" class="img-fluid w-25" />
+          </th>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="cartItem.quantity"
+              (change)="updateQuantity(cartItem._id, cartItem.quantity)"
+              class="form-control"
+            />
+          </td>
+          <td>{{ cartItem.price }}</td>
+          <td>{{ cartItem.quantity * cartItem.price }}</td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="deleteCartItem(cartItem._id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <td colspan="4">
+            <h3 class="text-right">Total Price</h3>
+          </td>
+          <td *ngIf="!priceInDiscount">{{ totalPrice }}</td>
+          <td *ngIf="priceInDiscount">{{ priceInDiscount }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="total-function">
+      <div class="d-flex justify-content-between align-items-center gap-5">
+        <div class="col-md-6 d-flex align-items-center gap-3">
+          <input
+            type="text"
+            name=""
+            id=""
+            class="form-control"
+            [(ngModel)]="couponCode"
+            placeholder="Enter coupon code"
+          />
+          <button class="btn-coupon" (click)="applyCoupon()">Apply</button>
+        </div>
+        <div class="col-md-6">
+          <form
+            class="d-flex gap-3 align-items-center justify-content-end flex-column"
+            #checkoutForm="ngForm"
+            (ngSubmit)="onSubmit(checkoutForm)"
+          >
+            <input
+              type="text"
+              name="address"
+              id=""
+              class="form-control"
+              ngModel
+              placeholder="Address"
+              required
+            />
+            <input
+              type="text"
+              name="city"
+              id=""
+              class="form-control"
+              ngModel
+              placeholder="City"
+              required
+            />
+            <input
+              type="number"
+              name="phone"
+              id=""
+              class="form-control"
+              ngModel
+              placeholder="Phone"
+              required
+            />
+            <input
+              type="number"
+              name="postalCode"
+              id=""
+              class="form-control"
+              ngModel
+              placeholder="Postal Code"
+              required
+            />
+            <select class="form-select w-25" name="payment" ngModel="cash">
+              <option class="text-center form-control" value="cash" selected>
+                Cash
+              </option>
+              <option class="form-control text-center" value="online">
+                Visa
+              </option>
+            </select>
+            <button
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="!checkoutForm.valid"
+            >
+              Checkout
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="empty-cart text-center" *ngIf="cartItemsValues.length == 0">
+    <h1 class="text-center mb-5">Empty Cart</h1>
+    <a routerLink="/products" class="no-cart">Shop Now</a>
+  </div>
+</div>

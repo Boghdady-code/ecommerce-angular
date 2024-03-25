@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="product">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="product-images">
+          <div class="other-images">
+            <img
+              src="{{ image }}"
+              alt=""
+              *ngFor="let image of productImages"
+              class="img-fluid"
+              (click)="onImageClick(image)"
+            />
+          </div>
+          <div class="main-image">
+            <img
+              src="{{ productImages[0] }}"
+              alt=""
+              class="img-fluid"
+              #MainImage
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="product-details">
+          <div class="product-title">
+            <h1>{{ product?.title }}</h1>
+          </div>
+          <div class="product-decsription">
+            <p>{{ product?.description }}</p>
+          </div>
+          <div class="product-price">
+            <h3>{{ product?.price | currency }}</h3>
+          </div>
+          <div class="product-quantity">
+            <p>Available Quantity: {{ product?.quantity }}</p>
+          </div>
+          <div class="add-btn">
+            <button
+              class="btn-cart"
+              type="submit"
+              (click)="onAddToCart(product?._id!)"
+            >
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-5 reviews-box">
+  <div class="reviews-container">
+    <div
+      class="post-review text-center row justify-content-center align-items-center direction-column"
+    >
+      <h1 class="text-center">Post Review</h1>
+      <form #reviewForm="ngForm" (ngSubmit)="onSubmit(reviewForm)">
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            style="height: 200px"
+            name="review"
+            ngModel
+          ></textarea>
+          <app-star-rating
+            (userRatingChange)="setRating($event)"
+          ></app-star-rating>
+        </div>
+
+        <button type="submit" class="post-comment">POST</button>
+      </form>
+    </div>
+    <div class="reviews">
+      <div class="review mb-3" *ngFor="let review of productReviews">
+        <div class="review-main d-flex align-items-center gap-2">
+          <div class="reviewer-details">
+            <h3>{{ review.user.name }}:</h3>
+          </div>
+          <div class="review-rating">
+            <app-star-rating
+              [userRating]="review.ratings"
+              [readonly]="true"
+            ></app-star-rating>
+          </div>
+        </div>
+        <div class="review-txt">
+          <p>{{ review.title }}</p>
+        </div>
+      </div>
+      <h2
+        class="text-center mt-5 text-danger"
+        *ngIf="productReviews?.length === 0"
+      >
+        No Reviews Posted
+      </h2>
+    </div>
+  </div>
+</div>

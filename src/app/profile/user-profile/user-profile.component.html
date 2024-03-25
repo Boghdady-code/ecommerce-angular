@@ -1,0 +1,14 @@
+<div class="container-fluid row">
+  <div class="left col-md-2">
+    <div class="links">
+      <ul *ngFor="let link of links">
+        <li routerLinkActive="active">
+          <a routerLink="{{ link.path }}">{{ link.name }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="right col-md-10">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="rating-container" [class.readonly]="readonly">
+  <fa-icon
+    [class.rated]="userRating >= star.number"
+    (click)="onRatingClick(star.number)"
+    [icon]="faStar"
+    (click)="setRating(star.number)"
+    *ngFor="let star of stars"
+  ></fa-icon>
+</div>

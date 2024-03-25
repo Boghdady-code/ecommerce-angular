@@ -1,0 +1,124 @@
+$primary-color: #feeae6;
+$secondary-color: #442c2e;
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-box {
+  position: fixed;
+  padding: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+  width: 500px;
+  height: 500px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  .modal-top {
+    margin-bottom: 30px;
+    position: relative;
+    h1 {
+      text-align: center;
+    }
+    i {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-size: 25px;
+      color: black;
+      &:hover {
+        color: red;
+      }
+    }
+  }
+  form {
+    input {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 5px;
+    }
+    button {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.register-txt {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  a {
+    cursor: pointer;
+    color: #4a148c;
+    text-decoration: underline;
+    font-weight: bold;
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.fa-arrow-left-long {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.forgot-txt {
+  a {
+    cursor: pointer;
+    color: #4a148c;
+    text-decoration: underline;
+    font-weight: bold;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-box {
+    width: 300px;
+    height: 600px;
+    .register-txt {
+      bottom: 20%;
+      left: 10px;
+    }
+
+    i {
+      top: 17% !important;
+    }
+
+    .fa-xmark {
+      right: -3% !important;
+    }
+    .fa-arrow-left-long {
+      left: -3% !important;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+$primary-color: #feeae6;
+$secondary-color: #442c2e;
+
+.container {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+}
+
+.btn-coupon {
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.btn-clear {
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .total-function > div {
+    flex-direction: column;
+  }
+
+  select {
+    width: 100% !important;
+  }
+}
+
+.no-cart {
+  font-size: 20px;
+  color: $secondary-color;
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid $primary-color;
+  border-radius: 10px;
+  margin-top: 20px;
+  text-align: center;
+  &:hover {
+    background-color: $primary-color;
+  }
+}
